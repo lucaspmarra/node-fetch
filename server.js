@@ -2,7 +2,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 const cors = require("cors");
 const app = express();
-// const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(cors());
 
@@ -37,7 +37,7 @@ app.get("/:cep", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started at http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server started at http://localhost:${port}`);
 });
 module.export = app;
