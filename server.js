@@ -37,7 +37,7 @@ app.get("/:cep", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server started at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server started at http://localhost:${PORT}`);
 });
 module.export = app;
