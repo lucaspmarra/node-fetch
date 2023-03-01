@@ -42,7 +42,7 @@ app.get("/users", async function (req, res) {
       `https://cors.sh/https://jsm-challenges.s3.amazonaws.com/frontend-challenge.json`
     )
     const data = await response.json();
-    res.status(200).status(data)
+    res.status(200).send(data)
     console.log(data);
   } catch (error) {
     console.log(error);
