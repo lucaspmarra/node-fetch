@@ -1,5 +1,6 @@
 const express = require("express");
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
+const axios = require('axios');
 const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3001;
@@ -15,10 +16,10 @@ app.get("/cep/:cep", async (req, res) => {
   //   res.status(406).send({ error: "Erro, menos que 7" });
   // } else {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       `https://viacep.com.br/ws/${req.params.cep}/json/`
     );
-    const data = await response.json();
+    const data = await response;
     const { cep, logradouro, localidade, uf } = data;
     console.log(data);
     res.status(200).send({
@@ -38,10 +39,10 @@ app.get("/cep/:cep", async (req, res) => {
 
 app.get("/users", async function (req, res) {
   try {
-    const response = await fetch(
+    const response = await axios.get(
       `https://cors.sh/https://jsm-challenges.s3.amazonaws.com/frontend-challenge.json`
     )
-    const data = await response.json();
+    const data = await response;
     res.status(200).send(data)
     console.log(data);
   } catch (error) {
