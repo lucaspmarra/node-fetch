@@ -7,10 +7,10 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send({ message: "Please use /:cep endpoint passing a CEP to get data" });
+  res.send({ message: "Please use /cep/:cep endpoint passing a CEP to get data" });
 });
 
-app.get("/:cep", async (req, res) => {
+app.get("/cep/:cep", async (req, res) => {
   if (req.params.cep.length <= 8) {
     res.status(406).send({ error: "Erro, menos que 7" });
   } else {
@@ -36,6 +36,22 @@ app.get("/:cep", async (req, res) => {
     }
   }
 });
+
+app.get("/users", async function (req, res) {
+  try {
+    const response = await fetch(
+      `https://jsm-challenges.s3.amazonaws.com/frontend-challenge.json`
+    )
+    console.log(response.json());
+    res.send(response.json());
+  } catch (error) {
+    console.log(error);
+    res.send(error)
+    // res.status(404).send({ error: 'Não foi possível realizar a requisição' })
+
+  }
+})
+
 
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`);
