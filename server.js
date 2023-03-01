@@ -39,7 +39,7 @@ app.get("/cep/:cep", async (req, res) => {
 app.get("/users", async function (req, res) {
   try {
     const response = await fetch(
-      `https://jsm-challenges.s3.amazonaws.com/frontend-challenge.json`
+      `https://cors.sh/https://jsm-challenges.s3.amazonaws.com/frontend-challenge.json`
     )
     const data = await response.json();
     res.status(200).status(data)
